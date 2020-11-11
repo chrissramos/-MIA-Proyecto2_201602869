@@ -1,0 +1,34 @@
+<h1>Mis Chats</h1>
+<hr>
+<button (click)="traerSalas()" class="btn btn-success">Cargar Chats</button>
+<hr>
+<br>
+<div class="row">
+    <div class="col-md-8">
+        <!-- <div class="container" *ngIf="iniciarSalaBandera">
+            <div class="chat-window" *ngFor="let chat of salasMias">
+                <div class="container">
+                    <h2>IDCHAT: {{chat.idSala}} </h2>
+
+                    <button (click)="cargarSalaChat(chat.idSala)" class="btn btn-dark">Cargar esta sala</button>
+                    
+                </div>
+            </div>
+        </div> -->
+        <div class="card-columns" *ngIf="iniciarSalaBandera">
+            <div class="card animated fadeIn shadow p-3 mb-5 bg-white rounded" *ngFor="let chat of salasMias">
+                <h1 class="card-title">{{chat.comprador}}</h1>
+                <div class="card-body">
+
+                    <img src={{chat.foto}} class="img-fluid shadow p-2 mb-5 bg-dark rounded-circle">
+                    <button (click)="cargarSalaChat(chat.idSala)" class="btn btn-dark">Abrir Sala</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="container" *ngIf="banderaUnaSala">
+            <app-chat [idSalaRecibe]="idSalaChatEnviar"></app-chat>
+        </div>
+    </div>
+</div>

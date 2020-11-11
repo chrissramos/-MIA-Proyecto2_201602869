@@ -1,0 +1,75 @@
+<h1>Mi Carrito:</h1>
+<div class="row">
+    <div class="col-md-9">
+
+    </div>
+    <div class="col-md-3">
+        <button (click)="compraTotal()" class="btn btn-success">Proceder a la compra!</button>
+    </div>
+</div>
+<div class="table-responsive-xl">
+    <table class="table table-hover">
+        <thead>
+            <tr class="table-primary">
+                <th scope="col"> </th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Descripcion</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Sub-total</th>
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="table-light" *ngFor="let producto of productosCarrito; let i = index;">
+                <!--Aqui va el ng for en el TR-->
+                <td>
+                    <button (click)="quitarCarrito(producto)" class="btn btn-danger">Quitar de Carrito</button>
+                </td>
+                <td WIDTH="200">
+                    <img src="{{producto.Imagen}}" style="max-width:100%;width:auto;height:auto;">
+                </td>
+                <td>
+                    {{producto.Nombre}}
+                </td>
+                <td>
+                    {{producto.Descripcion}}
+                </td>
+                <td>
+                    {{producto.Precio}}
+                </td>
+                <td WIDTH="150">
+                    <div class="form-group">
+
+                        <input type="number" id="txt-cantidad" class="form-control" #txtCantidad />
+                        <button (click)="calcSubtotal(producto, txtCantidad.value)" class="btn btn-dark">Calcular Subtotal</button>
+                    </div>
+                </td>
+                <td WIDTH="150">
+                    {{producto.Subtotal}}
+                </td>
+
+            </tr>
+            <hr>
+            <tr>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                    <button (click)="calcularTotal()" class="btn btn-dark">Calcular Total</button>
+                </td>
+                <td>
+                    <h1>Total: {{totalCarrito}}</h1>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

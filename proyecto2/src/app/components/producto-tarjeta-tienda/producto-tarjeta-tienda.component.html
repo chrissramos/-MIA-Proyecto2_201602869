@@ -1,0 +1,183 @@
+<div class="animated fadeIn">
+
+    <h1>{{prodSel.Nombre}}</h1>
+    <h3> Categoria: {{prodSel.Categoria}}</h3>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+            <img [src]="prodSel.Imagen" class="img-fluid">
+            <br> <br>
+            <a [routerLink]="['/tienda']" class="btn btn-outline-primary btn-block"> REGRESAR...</a>
+        </div>
+        <div class="col-md-8">
+            <h3>{{prodSel.Nombre}}</h3>
+            <hr>
+            <p>{{prodSel.Descripcion}}</p>
+            <br>
+            <br>
+            <div>
+                <h2>Precio: {{prodSel.Precio}}</h2>
+                <br><br>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" (click)="megusta()" class="btn btn-primary">Me Gusta: {{prodSel.Megusta}}</button>
+                    <button type="button" (click)="nomegusta()" class="btn btn-warning">No Me gusta: {{prodSel.Nomegusta}}</button>
+                    <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#modal_agregarCarrito">Agregar a Carrito</a>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+
+    <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#comentario">Comentarios y Denuncia</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#chat">Chatear con el Vendedor</a>
+        </li>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active show" id="comentario">
+            <br><br>
+            <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#modal_agregarComentario">Agregar Comentario</a>
+            <a class="btn btn-danger btn-lg" role="button" data-toggle="modal" data-target="#modal_agregarDenuncia">Denunciar Producto</a>
+
+            <br><br>
+            <h3>Comentarios: </h3>
+            <div class="table-responsive-xl">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Comentario</th>
+                            <th scope="col">Fecha</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-light" *ngFor="let comentario of comentarios">
+                            <!--Aqui va el ng for en el TR-->
+                            <td>
+                                {{comentario.NombreCliente}}
+                            </td>
+                            <td>
+                                {{comentario.Comentario}}
+                            </td>
+                            <td>
+                                {{comentario.Fecha}}
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="chat">
+            <button (click)="iniciarSalaChat()" class="btn btn-primary">Iniciar Chat Con Vendedor</button>
+            <hr>
+            <br>
+            <h1>Chat Con Vendedor</h1>
+            <div class="chat-window" *ngIf="iniciarSalaBandera">
+                <app-chat [idSalaRecibe]="idSalaChatEnviar"></app-chat>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+<!--MODAL PARA AGREGAR COMENTARIO-->
+<div class="modal fade" id="modal_agregarComentario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nuevo Comentario</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <h6>Comentario:</h6>
+                                <input type="text" id="txt-coment" class="form-control" #txtComent />
+                            </div>
+
+                            <div class="form-group">
+                                <button (click)="agregarComentario(txtComent.value)" class="btn btn-success">Agregar Comentario</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--MODAL PARA AGREGAR DENUNCIA-->
+<div class="modal fade" id="modal_agregarDenuncia" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Denuncia!</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <h6>Denuncia:</h6>
+                                <input type="text" id="txt-denuncia" class="form-control" #txtDenuncia />
+                            </div>
+                            <div class="form-group">
+                                <button (click)="agregarDenuncia(txtDenuncia.value)" class="btn btn-danger">Enviar Denuncia</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--MODAL PARA AGREGAR A CARRITO-->
+<div class="modal fade" id="modal_agregarCarrito" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Agregar Producto a Carrito</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="card animated fadeIn shadow p-3 mb-5 bg-white rounded">
+                    <img src={{prodSel.Imagen}} class="card-img-top">
+                    <div class="card-body">
+                        <h2 class="card-title">{{prodSel.Nombre}}</h2>
+                        <p class="card-text">{{prodSel.Descripcion}}</p>
+                        <h2 class="card-title">Precio: {{prodSel.Precio}}</h2>
+
+                        <button (click)="agregarCarrito()" class="btn btn-primary">Agregar a carrito</button>
+                        <!-- <a [routerLink]="['/heroe',i]" class="btn btn-primary">Go somewhere</a>  -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,466 @@
+<br>
+<h1>Panel Administrador</h1>
+<button (click)="cerrarSesion()" class="btn btn-primary">Cargar Datos</button>
+<br><br>
+<hr>
+<div>
+    <ul class="nav nav-pills justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" data-toggle="tab" href="#home">Denuncias</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#profile">Crear Categoria</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-toggle="tab" href="#reportes">Reportes</a>
+        </li>
+
+    </ul>
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade active show" id="home">
+            <br><br>
+            <div class="table-responsive-xl">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col">Producto</th>
+                            <th scope="col">Denuncia</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Usuario quien denuncio</th>
+                            <th scope="col">Accion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-light" *ngFor="let denuncia of denuncias">
+                            <!--Aqui va el ng for en el TR-->
+                            <td WIDTH="200">
+                                {{denuncia.NombreProducto}}
+                                <img src="{{denuncia.ImagenProducto}}" style="max-width:100%;width:auto;height:auto;">
+                            </td>
+                            <td>
+                                {{denuncia.Comentario}}
+                            </td>
+                            <td>
+                                {{denuncia.Fecha}}
+                            </td>
+                            <td>
+                                {{denuncia.Denunciante}}
+                            </td>
+                            <td>
+                                <button (click)="bloquearProducto(denuncia)" class="btn btn-danger">Bloquear Producto</button>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="profile">
+            <div class="form-group">
+                <h3>Nueva Categoria:</h3>
+                <input type="text" class="form-control" id="inputDefault" #txtCategoria>
+                <br>
+                <button (click)="agregarCategoria(txtCategoria.value)" class="btn btn-primary">Agregar Categoria</button>
+            </div>
+            <br>
+            <h2>Listado De Categorias:</h2>
+            <div class="table-responsive-xl">
+                <table class="table table-hover">
+                    <thead>
+                        <tr class="table-primary">
+                            <th scope="col">Categoria</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="table-light" *ngFor="let item of categorias">
+                            <!--Aqui va el ng for en el TR-->
+                            <td>
+                                {{item.Categoria}}
+                            </td>
+
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="tab-pane fade" id="reportes">
+            <br>
+            <ul class="nav nav-pills justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" data-toggle="tab" href="#bitacoraDos">Inicio</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#bitacoraModel">Reporte Bitacora</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#reporteUno">Reporte 1</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#reporteDos">Reporte 2</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#reporteTres">Reporte 3</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#reporteCuatro">Reporte 4</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#reporteCinco">Reporte 5</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#reporteSeis">Reporte 6</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#reporteSiete">Reporte 7</a>
+                </li>
+
+
+
+            </ul>
+            <hr>
+        </div>
+
+
+    </div>
+    <br><br><br>
+    <div id="myTabContentDos" class="tab-content">
+        <br><br>
+        <div class="tab-pane fade" id="bitacoraModel">
+            <ul class="nav nav-pills justify-content-center">
+
+                <h2>Bitacora</h2>
+                <br>
+                <div class="table-responsive-xl">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Correo</th>
+                                <th scope="col">Accion</th>
+                                <th scope="col">Fecha</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light" *ngFor="let bit of reporteBitacora">
+                                <!--Aqui va el ng for en el TR-->
+                                <td>
+                                    {{bit.correo}}
+                                </td>
+                                <td>
+                                    {{bit.descripcion}}
+                                </td>
+                                <td>
+                                    {{bit.fecha}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="reporteUno">
+            <ul class="nav nav-pills justify-content-center">
+
+                <h2>Reporte 1</h2>
+                <br>
+                <div class="table-responsive-xl">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Producto</th>
+                                <th scope="col">Propietario</th>
+                                <th scope="col">Total ventas</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light" *ngFor="let repoUno of reporteUno">
+                                <!--Aqui va el ng for en el TR-->
+                                <td>
+                                    {{repoUno.Producto}}
+                                </td>
+                                <td>
+                                    {{repoUno.Propietario}}
+                                </td>
+                                <td>
+                                    {{repoUno.Total}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="reporteDos">
+            <ul class="nav nav-pills justify-content-center">
+
+                <h2>Reporte 2</h2>
+                <br>
+                <div class="table-responsive-xl">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Producto</th>
+                                <th scope="col">Propietario</th>
+                                <th scope="col">Total Me gusta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light" *ngFor="let repoDos of reporteDos">
+                                <!--Aqui va el ng for en el TR-->
+                                <td>
+                                    {{repoDos.Nombre}}
+                                </td>
+                                <td>
+                                    {{repoDos.Propietario}}
+                                </td>
+                                <td>
+                                    {{repoDos.CantidadMegusta}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="reporteTres">
+            <ul class="nav nav-pills justify-content-center">
+
+                <h2>Reporte 3</h2>
+                <br>
+                <div class="table-responsive-xl">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Producto</th>
+                                <th scope="col">Propietario</th>
+                                <th scope="col">Total No me gusta</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light" *ngFor="let repoTres of reporteTres">
+                                <!--Aqui va el ng for en el TR-->
+                                <td>
+                                    {{repoTres.Nombre}}
+                                </td>
+                                <td>
+                                    {{repoTres.Propietario}}
+                                </td>
+                                <td>
+                                    {{repoTres.CantidadNomegusta}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </ul>
+        </div>
+
+        <div class="tab-pane fade" id="reporteCuatro">
+            <ul class="nav nav-pills justify-content-center">
+
+                <hr>
+                <br>
+                <br><br>
+                <h3>Top 10 clientes con mas credito</h3>
+                <div class="table-responsive-xl">
+                    <table class="table">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Fecha Nacimiento</th>
+                                <th scope="col">Creditos</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light" *ngFor="let repoCuatroUno of reporteCuatroUno">
+                                <!--Aqui va el ng for en el TR-->
+                                <td>
+                                    {{repoCuatroUno.Nombre}}
+                                </td>
+                                <td>
+                                    {{repoCuatroUno.Correo}}
+                                </td>
+                                <td>
+                                    {{repoCuatroUno.Fecha}}
+                                </td>
+                                <td>
+                                    {{repoCuatroUno.Credito}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <hr>
+                    <br>
+                    <h3>Top 10 clientes con menos credito</h3>
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Fecha Nacimiento</th>
+                                <th scope="col">Creditos</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light" *ngFor="let repoCuatroDos of reporteCuatroDos">
+                                <!--Aqui va el ng for en el TR-->
+                                <td>
+                                    {{repoCuatroDos.Nombre}}
+                                </td>
+                                <td>
+                                    {{repoCuatroDos.Correo}}
+                                </td>
+                                <td>
+                                    {{repoCuatroDos.Fecha}}
+                                </td>
+                                <td>
+                                    {{repoCuatroDos.Credito}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+
+
+
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="reporteCinco">
+            <ul class="nav nav-pills justify-content-center">
+
+                <h2>Reporte 5</h2>
+                <br>
+                <div class="table-responsive-xl">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Fecha Nacimiento</th>
+                                <th scope="col">Total de Denuncias</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light" *ngFor="let repoCinco of reporteCinco">
+                                <!--Aqui va el ng for en el TR-->
+                                <td>
+                                    {{repoCinco.Nombre}}
+                                </td>
+                                <td>
+                                    {{repoCinco.Correo}}
+                                </td>
+                                <td>
+                                    {{repoCinco.Fecha}}
+                                </td>
+                                <td>
+                                    {{repoCinco.Conteo}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </ul>
+        </div>
+        <div class="tab-pane fade" id="reporteSeis">
+            <ul class="nav nav-pills justify-content-center">
+
+                <h2>Reporte 6</h2>
+                <br>
+
+                <div class="table-responsive-xl">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Credito</th>
+                                <th scope="col">Cantidad Publicaciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light" *ngFor="let repoSeis of reporteSeis">
+                                <!--Aqui va el ng for en el TR-->
+                                <td>
+                                    {{repoSeis.Nombre}}
+                                </td>
+                                <td>
+                                    {{repoSeis.Correo}}
+                                </td>
+                                <td>
+                                    {{repoSeis.Credito}}
+                                </td>
+                                <td>
+                                    {{repoSeis.Publicaciones}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+            </ul>
+        </div>
+
+        <div class="tab-pane fade" id="reporteSiete">
+            <ul class="nav nav-pills justify-content-center">
+
+                <h2>Reporte 7</h2>
+                <br>
+                <div class="table-responsive-xl">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="col">Pais</th>
+                                <th scope="col">Clientes</th>
+                                <th scope="col">Productos</th>
+                                <th scope="col">Creditos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-light" *ngFor="let repoSiete of reporteSiete">
+                                <!--Aqui va el ng for en el TR-->
+                                <td>
+                                    {{repoSiete.Pais}}
+                                </td>
+                                <td>
+                                    {{repoSiete.Clientes}}
+                                </td>
+                                <td>
+                                    {{repoSiete.Productos}}
+                                </td>
+                                <td>
+                                    {{repoSiete.Credito}}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </ul>
+        </div>
+
+
+    </div>
+
+
+</div>

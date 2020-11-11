@@ -1,0 +1,35 @@
+<div class="animated fadeIn">
+    <h1>{{prodSel.Producto_nombre}}</h1>
+
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4">
+            <img [src]="prodSel.Producto_imagen" class="img-fluid">
+            <br> <br>
+            <a [routerLink]="['/panelu']" class="btn btn-outline-primary btn-block"> REGRESAR...</a>
+        </div>
+        <div class="col-md-8">
+            <h3>{{prodSel.Producto_nombre}}</h3>
+            <hr>
+            <p>{{prodSel.Producto_descripcion}}</p>
+            <br>
+            <br>
+            <div>
+                <h2>Precio: {{prodSel.Producto_precio}}</h2>
+                <br><br>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-primary">Me Gusta: {{prodSel.Producto_megusta}}</button>
+                    <button type="button" class="btn btn-warning">No Me gusta: {{prodSel.Producto_nomegusta}}</button>
+                    <button type="button" class="btn btn-outline-danger">Agregar a Carrito</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+    <button class="btn btn-success">Agregar Comentario/Denuncia</button>
+    <br><br>
+    <h3>Comentarios: </h3>
+</div>

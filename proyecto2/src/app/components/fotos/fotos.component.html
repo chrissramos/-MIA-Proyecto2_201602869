@@ -1,0 +1,8 @@
+<div class="card-columns">
+    <div class="card animated fadeIn shadow p-3 mb-5 bg-white rounded" *ngFor="let item of items | async">
+        <img [src]="item.url" class="card-img-top">
+        <div class="card-body">
+            <h5 class="card-tittle">{{ item.nombre }}</h5>
+        </div>
+    </div>
+</div>

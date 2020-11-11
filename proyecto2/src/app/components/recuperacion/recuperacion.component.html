@@ -1,0 +1,20 @@
+<h1>Debe ingresar su correo y nuevo password</h1>
+
+<div class="form-group">
+
+    <h4>Ingrese su correo:</h4>
+</div>
+<div class="form-group">
+    <input type="text" id="txt-correo" placeholder="Correo" class="form-control" #txtcorreo />
+</div>
+<div class="form-group">
+
+    <h4>Ingrese su Nueva Password:</h4>
+</div>
+<div class="form-group">
+    <input type="password" id="txt-pass" placeholder="Nueva Pass" class="form-control" #txtpass />
+</div>
+
+<div class="form-group">
+    <button (click)="reiniciarpass(txtcorreo.value, txtpass.value)" class="btn btn-primary">Enviar Enlace de Recuperacion</button>
+</div>

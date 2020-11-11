@@ -1,0 +1,201 @@
+<div class="container">
+    <div class="animated fadeIn">
+
+        <button (click)="enviarCorreoTest()" class="btn btn-warning">Cargar Datos</button>
+        <h1>{{this.usuarioNombre}}<small>  | Creditos: {{this.usuarioCredito}}</small></h1>
+
+        <hr>
+
+        <div class="row">
+            <div class="col-md-4">
+                <img src={{this.usuarioFoto}} class="img-fluid shadow p-3 mb-5 bg-dark rounded-circle">
+                <br> <br>
+
+            </div>
+            <div class="col-md-8">
+                <div class="form-group">
+                    <h2>Nombre: </h2>
+                    <h3>{{this.usuarioNombre}}</h3>
+                </div>
+                <div class="form-group">
+                    <h2>Apellido: </h2>
+                    <h3>{{this.usuarioApellido}}</h3>
+                </div>
+                <div class="form-group">
+                    <h2>Correo: </h2>
+                    <h3>{{this.usuarioCorreo}}</h3>
+                </div>
+                <div class="form-group">
+                    <h2>Pais: </h2>
+                    <h3>{{this.usuarioPais}}</h3>
+                </div>
+                <div class="form-group">
+                    <h2>Fecha: </h2>
+                    <h3>{{this.usuarioFecha}}</h3>
+                </div>
+                <div class="form-group">
+
+                    <a class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#modal_update" data-backdrop="false">Actualizar Datos</a>
+                    <a class="btn btn-warning btn-lg" role="button" data-toggle="modal" data-target="#modal_contra" data-backdrop="false">Cambiar mi Password</a>
+
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h1>Mis productos</h1>
+        <a class="btn btn-danger btn-lg" role="button" data-toggle="modal" data-target="#modal_registroProducto" data-backdrop="false">Registrar Producto</a>
+        <br> <br>
+        <div class="card-columns">
+            <div class="card animated fadeIn shadow p-3 mb-5 bg-white rounded" *ngFor="let producto of productos; let i = index;">
+                <img src={{producto.Producto_imagen}} class="card-img-top">
+                <div class="card-body">
+                    <h2 class="card-title">{{producto.Producto_nombre}}</h2>
+                    <p class="card-text">{{producto.Producto_descripcion}}</p>
+                    <p class="card-text"><small class="text-muted">Precio: {{producto.Producto_precio}}</small></p>
+                    <button (click)="verProducto(producto)" class="btn btn-primary">Ver Producto</button>
+                    <!-- <button (click)="verHeroe()" type="button" class="btn btn-primary btn-lg btn-block">
+                        Ver mas
+                    </button>
+                    -->
+                    <!-- <a [routerLink]="['/heroe',i]" class="btn btn-primary">Go somewhere</a>  -->
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!--MODAL PARA REGISTRAR PRODUCTO-->
+<div class="modal fade" id="modal_registroProducto" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Registro de Producto</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="form-group">
+                                <h6>Nombre:</h6>
+                                <input type="text" id="txt-nombre" class="form-control" #txtNombreProducto />
+                            </div>
+                            <div class="form-group">
+                                <h6>Descripcion:</h6>
+                                <input type="text" id="txt-descripcion" class="form-control" #txtDescripcionProducto />
+                            </div>
+                            <div class="form-group">
+                                <h6>Precio:</h6>
+                                <input type="text" id="txt-precio" class="form-control" #txtPrecioProducto />
+                            </div>
+                            <div class="form-group">
+                                <h6>Palabras Claves:</h6>
+                                <input type="text" id="txt-palabra" class="form-control" #txtPalabrasClaves />
+                            </div>
+                            <div class="form-group">
+                                <h6>Categoria:</h6>
+                                <select class="form-control" id="exampleSelect1" #txtCat>
+                                    <option *ngFor="let item of categorias" >{{item.Categoria}}</option>
+                                    
+                                  </select>
+                            </div>
+                            <div class="form-group">
+                                <h6>Foto del Producto:</h6>
+                                <input type="file" class="d-none" (change)="subirFotoSeleccionada($event)" #photoInput>
+                                <img src="../../../assets/img/perfiles/upload.png" alt="" (click)="photoInput.click()">
+                            </div>
+                            <div class="form-group">
+                                <button (click)="registrarProducto(txtNombreProducto.value, txtDescripcionProducto.value, txtPrecioProducto.value, txtPalabrasClaves.value, txtCat.value)" class="btn btn-success">Registrar Producto</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--MODAL ACTUALIZAR DATOS-->
+
+<div class="modal fade" id="modal_update" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Actualizar Mis Datos</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <h2>Nombre: </h2>
+                                <input type="text" value="{{this.usuarioNombre}}" id="txt-nombre" class="form-control" #txtNombre />
+                            </div>
+                            <div class="form-group">
+                                <h6>Apellido:</h6>
+                                <input type="text" value="{{this.usuarioApellido}}" id="txt-apellido" class="form-control" #txtApellido />
+                            </div>
+                            <div class="form-group">
+                                <h6>Pais:</h6>
+                                <input type="text" value="{{this.usuarioPais}}" id="txt-pais" class="form-control" #txtPais />
+                            </div>
+                            <div class="form-group">
+                                <h6>Fecha de Nacimiento:</h6>
+                                <input type="text" value="{{this.usuarioFecha}}" id="txt-fecha" class="form-control" #txtFechaNac />
+                            </div>
+                            <div class="form-group">
+                                <h6>Foto de Perfil:</h6>
+                                <input type="file" class="d-none" (change)="subirFotoSeleccionadaDos($event)" #photoInputDos>
+                                <img src="../../../assets/img/perfiles/upload.png" alt="" (click)="photoInputDos.click()">
+                            </div>
+                            <div class="form-group">
+                                <button (click)="actualizarUsuario(txtNombre.value, txtApellido.value, txtPais.value, txtFechaNac.value)" class="btn btn-primary">Registrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--ACTUALIZAR CONTRASENIA-->
+<div class="modal fade" id="modal_contra" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Actualiar Password</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+            </div>
+            <div class="modal-body">
+                <div class="container">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <div class="form-group">
+                                <h2>Nueva Pass: </h2>
+                                <input type="text" id="txt-nombre" class="form-control" #txtNuevaPass />
+                            </div>
+
+                            <div class="form-group">
+                                <button (click)="actualizarPass(txtNuevaPass.value)" class="btn btn-primary">Registrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

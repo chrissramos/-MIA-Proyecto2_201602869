@@ -1,0 +1,14 @@
+{
+    "appId": "com.proyecto2.app",
+    "appName": "proyecto2",
+    "bundledWebRuntime": false,
+    "npmClient": "npm",
+    "webDir": "dist",
+    "plugins": {
+        "SplashScreen": {
+            "launchShowDuration": 0
+        }
+    },
+    "linuxAndroidStudioPath": "/usr/local/android-studio/bin/studio.sh",
+    "cordova": {}
+}
